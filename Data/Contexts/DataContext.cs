@@ -6,5 +6,5 @@ namespace Data.Contexts;
 
 public class DataContext(DbContextOptions<DataContext> options) : IdentityDbContext<ApplicationUser>(options)
 {
-    public DbSet<UserAddress> Addresses { get; set; }
+    public DbSet<UserAddress> Addresses { get; set; } 
 }
