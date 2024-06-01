@@ -13,8 +13,15 @@ namespace UserProvider.Functions
         private readonly DataContext _context = context;
 
         [Function("GetOneUser")]
-        public async Task <IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "edituser?id={id}")] HttpRequest req, string id)
+        public async Task <IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "edituser")] HttpRequest req)
         {
+            string id = req.Query["id"];
+
+            if (string.IsNullOrEmpty(id))
+            {
+                return new BadRequestObjectResult("Please pass an id on the query string");
+            }
+
             try
             {
                 var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
