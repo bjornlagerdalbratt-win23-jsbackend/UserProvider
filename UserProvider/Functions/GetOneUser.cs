@@ -17,10 +17,10 @@ namespace UserProvider.Functions
         {
             try
             {
-                var subscriber = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-                if (subscriber != null)
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+                if (user != null)
                 {
-                    return new OkObjectResult(subscriber);
+                    return new OkObjectResult(user);
                 }
                 return new NotFoundResult();
             }
